@@ -5,6 +5,7 @@ from django.contrib.auth.models import AbstractUser
 class Users(AbstractUser):
     admin = models.BooleanField(default=False)
     talaba = models.BooleanField(default=False)
+    parol = models.CharField(max_length=255, blank=True)
     
 
 

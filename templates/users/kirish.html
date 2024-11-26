@@ -1,13 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kirish</title>
-</head>
-<body>
+{% extends "asosiy/base.html" %}
+{% load static %}
 
-    login
+
+{% block title %}Kirish{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="d-flex justify-content-center align-items-center">
+
+            <div class="border p-5">
+                <p class="text-center display-5">
+                    <strong>
+                        Kirish
+                    </strong>
+                </p>
+
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="exampleInputUser" class="form-label">JSHR</label>
+                        <input type="text" name="username" class="form-control" id="exampleInputUser" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Parol</label>
+                        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="position-relative mt-5">
+                        <div class="position-absolute top-0 start-50 translate-middle">
+                            <button type="submit" class="btn-sm btn btn-outline-primary px-3">Kirish</button>
+                        </div>
+                    </div>                           
+                    
+                </form>
+            </div>
+
+        </div>
+    </div>
+
     
-</body>
-</html>
+
+
+{% endblock %}

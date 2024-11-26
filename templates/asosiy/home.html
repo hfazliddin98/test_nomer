@@ -5,12 +5,77 @@
 {% block title %}Bosh sahifa{% endblock %}
 
 {% block content %}
-<div class="container-fluid">
-    <div class="row flex-nowrap">
 
+    <div class="row">
+        {% if user.is_authenticated %}
+            {% if user.is_superuser %}
+                <div class="col-12">
+                
+                    <ul class="list-group px-5 my-5">
+                        <li class="list-group-item d-flex justify-content-between align-items-center border border-0 h4">
+                            Tanlov uchun ishtirokchi q`oshish
+                            <a class=" btn btn-sm btn-outline-primary" href="{% url 'royhat' %}">Qo`shish</a>
+                        </li>
+                    </ul>
+                
+                   
+                    <table class="table border">
+                        <thead>
+                            <tr>
+                                <th scope="col">Username</th>
+                                <th scope="col">Familya</th>
+                                <th scope="col">Ism</th>
+                                <th scope="col">Parol</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for u in userlar %}
+                                <tr>
+                                    <td>{{u.username}}</td>
+                                    <td>{{u.last_name}}</td>
+                                    <td>{{u.first_name}}</td>
+                                    <td>{{u.parol}}</td>
+                                </tr>
+                          
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                        
+                </div>
 
-       asosiy
+            {% else %}
 
+                {% if qiymat %}
+
+                    <div class="col-12">
+                        <p class="text-center h1 py-4">{{user_name}} - sizga biriktirilgan testlar</p>
+
+                        {% for q in qiymat %}
+                            <ul class="list-group">
+            
+                                <li class="list-group-item d-flex justify-content-between align-items-center border border-0 h5">
+                                    {{q.nomer}} - raqamli test
+                                    <a class=" btn btn-sm btn-outline-primary" href="{{q.link}}" target='blank'>Boshlash</a>
+                                </li>
+                                
+                            </ul>
+                            
+                        {% endfor %}
+
+                    </div>
+
+                {% else %}
+
+                        <ul class="list-group px-5 mt-5">
+                            <li class="list-group-item d-flex justify-content-between align-items-center border border-0 h4">
+                                Tanlov uchun test topshiriqlari shakilantirish
+                                <a class=" btn btn-sm btn-outline-primary" href="{% url 'nomer_yaratish' %}">Yaratish</a>
+                            </li>
+                        </ul>
+
+                {% endif %}
+            {% endif %}
+        {% endif %}
     </div>
-</div>
+
 {% endblock %}
