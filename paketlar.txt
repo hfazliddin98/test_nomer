@@ -5,6 +5,7 @@ django_bootstrap5
 requests
 pandas
 qrcode
+gunicorn
 
 
 django-import-export
